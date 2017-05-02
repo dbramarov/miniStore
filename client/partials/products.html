@@ -1,0 +1,23 @@
+<div ng-controller="productsController">
+	<h3>Add a new Product:</h3>
+
+	<form ng-submit='create()'>
+		<p>Product name: <input type="text" ng-model='newProduct.name' required></p>
+		<p>Image (url): <input type="text" ng-model='newProduct.img'></p>
+		<p>Description: <textarea ng-model='newProduct.desc'></textarea></p>
+		<p>Initial Quantity: <input type="number" min="1" ng-model='newProduct.quantity'></p>
+		<p><input type="submit" value="Create"></p>
+	</form>
+	<hr>
+	<h1>Products:</h1>
+	<p>Search Product: <input type="text" ng-model='filter_pro'></p>
+	<div style="display: inline-block;" ng-repeat='product in products | filter: filter_pro'>
+		<div ng-if='product.quantity > 0' style="border: 3px solid black; display: inline-block; text-align: center; margin: 5px; padding: 5px;">
+			<p>{{product.name}}</p>
+			<p><img style="width: 150px; height: 150px;" src="{{product.image}}"></p>
+			<p>{{product.description}}</p>
+			<hr>
+			<p>({{product.quantity}} left)</p>
+		</div>
+	</div>
+</div>

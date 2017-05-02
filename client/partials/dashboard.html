@@ -1,0 +1,23 @@
+<div ng-controller="ordersController">
+	<h3>Products:</h3>
+		<div style="display: inline-block;" ng-repeat='product in products | limitTo : 7'>
+			<div ng-if='product.quantity > 0' style="border: 3px solid black; display: inline-block; text-align: center; margin: 5px; padding: 5px; margin-left: 30px;">
+				<p>{{product.name}}</p>
+				<p><img style="width: 150px; height: 150px;" src="{{product.image}}"></p>
+				<p>{{product.description}}</p>
+				<hr>
+				<p>({{product.quantity}} left)</p>
+			</div>
+		</div>		
+
+	<h3>Recent Orders:</h3>
+		<div ng-repeat='order in orders | limitTo : -3 | orderBy: "time": true'>
+			<p style="margin-left: 50px;">{{order.customer}} purchased {{order.quantity}} {{order.product}} on {{order.createdAt | date}}</p>
+		</div>
+
+	<h3>New Customers:</h3>
+		<div ng-repeat='customer in customers | limitTo : -3 | orderBy: "time": true'>
+			<p style="margin-left: 50px;">{{customer.name}} joined the store on {{customer.createdAt | date}}</p>
+		</div>
+
+</div>
